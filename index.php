@@ -3,67 +3,116 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>WMH - Website Mental Healthy</title>
+  <title>WMH - Tes Kesehatan Mental</title>
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-<body>
-  <header class="site-header">
-    <div class="container">
-      <h1>WMH</h1>
-      <nav>
-        <a href="index.php">Home</a>
-        <a href="test.php">Tes Kesehatan Mental</a>
-        <a href="appointment.php">Buat Janji</a>
-        <a href="articles.php">Artikel</a>
-        <a href="videos.php">Video</a>
-        <a href="books.php">Buku</a>
-        <a href="admin.php">Admin</a>
-      </nav>
+<body class="landing-body">
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">🧠</div>
+      <div>
+        <div class="brand-title">WMH</div>
+        <div class="brand-sub">Website Mental Health</div>
+      </div>
     </div>
+    <nav class="main-nav">
+      <a href="index.php">Beranda</a>
+      <a class="active" href="test.php">Tes</a>
+      <a href="articles.php">Artikel</a>
+      <a href="videos.php">Video</a>
+      <a href="books.php">Buku</a>
+      <a href="#">Tentang Kami</a>
+      <a href="appointment.php">Kontak</a>
+    </nav>
+    <div class="user-pill">Siswa ▾</div>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <h2>Selamat datang di WMH</h2>
-      <div class="hero-content">
-        <h3>Konseling</h3>
-        <h4>Tentang Kami</h4>
-        <p>Selamat datang di Layanan Konseling Online kami!</p>
-
-        <p>Kami adalah platform yang bertujuan untuk menyediakan akses mudah dan nyaman untuk mendapatkan bantuan konseling yang profesional dan terpercaya dari kenyamanan rumah Anda sendiri. Kami mengakui pentingnya kesehatan mental dan menyediakan lingkungan yang aman dan mendukung bagi individu untuk mencari pertolongan saat mereka membutuhkannya.</p>
-
-        <p>Kami siap membantu Anda dalam perjalanan menuju kesejahteraan mental yang lebih baik. Jika Anda memiliki pertanyaan lebih lanjut atau ingin membuat janji konseling, jangan ragu untuk menghubungi kami. Tim kami siap memberikan dukungan dan bantuan yang Anda butuhkan.</p>
-
-        <p>Terima kasih telah memilih Layanan Konseling Online kami. Kami berharap dapat membantu Anda mencapai kesehatan mental yang optimal dan kesejahteraan yang lebih baik.</p>
-      </div>
-      <div class="cta">
-        <a class="btn" href="test.php">Mulai Tes</a>
-        <a class="btn secondary" href="appointment.php">Buat Janji</a>
+  <main class="landing-wrap">
+    <section class="title-card">
+      <div class="title-icon">🧠</div>
+      <div>
+        <h1>Tes Kesehatan Mental</h1>
+        <p>Jawab pertanyaan berikut dengan jujur sesuai kondisi Anda.</p>
       </div>
     </section>
 
-    <section class="features">
-      <article>
-        <h3>Tes Cepat</h3>
-        <p>Deteksi awal tingkat stres, kecemasan, dan depresi melalui tes singkat.</p>
+    <section class="grid-main">
+      <div class="card question-card">
+        <div class="row space-between"><strong>Pertanyaan 1 dari 10</strong><strong>10%</strong></div>
+        <div class="progress"><span style="width:10%"></span></div>
+        <div class="question-box">
+          <div class="q-number">1</div>
+          <h2>Apakah Anda sering merasa cemas atau khawatir tanpa alasan yang jelas?</h2>
+        </div>
+        <ul class="options">
+          <li>○ Tidak</li>
+          <li class="selected">◉ Kadang</li>
+          <li>○ Sering</li>
+          <li>○ Sangat sering</li>
+        </ul>
+        <div class="actions">
+          <button class="btn ghost">← Sebelumnya</button>
+          <button class="btn">Selanjutnya →</button>
+        </div>
+      </div>
+
+      <div class="card hint-card">
+        <h3>💡 Petunjuk Pengerjaan</h3>
+        <ul>
+          <li>Jawablah setiap pertanyaan dengan jujur.</li>
+          <li>Hasil tes bersifat rahasia dan hanya untuk Anda.</li>
+          <li>Waktu pengerjaan ± 5–10 menit.</li>
+          <li>Tidak ada jawaban benar atau salah.</li>
+        </ul>
+      </div>
+
+      <div class="side-col">
+        <div class="card small">
+          <div class="row space-between"><strong>Progress Tes</strong><strong>10%</strong></div>
+          <div class="progress"><span style="width:10%"></span></div>
+        </div>
+        <div class="card info-box">
+          <h3>ℹ️ Informasi</h3>
+          <p>Tes ini membantu Anda memahami kondisi diri sendiri agar bisa menjadi lebih baik setiap hari.</p>
+        </div>
+      </div>
+
+      <div class="card note-card">
+        <h3>Ingat, kesehatan mental itu penting!</h3>
+        <p>Tes ini membantu Anda memahami kondisi diri sendiri agar bisa menjadi lebih baik setiap hari.</p>
+      </div>
+
+      <div class="card progress-card">
+        <h3>Progress Tes</h3>
+        <div class="circle">10%</div>
+        <p><strong>1 dari 10</strong> pertanyaan selesai.</p>
+      </div>
+    </section>
+
+    <section class="feature-row">
+      <article class="card feature">
+        <h4>Tes Kesehatan Mental</h4>
+        <p>Kenali kondisi kesehatan mentalmu melalui tes yang aman dan terpercaya.</p>
+        <a class="btn" href="test.php">Mulai Tes →</a>
       </article>
-      <article>
-        <h3>Artikel & Buku</h3>
-        <p>Koleksi artikel dan rekomendasi buku tentang kesehatan mental.</p>
+      <article class="card feature">
+        <h4>Jadwal Konseling</h4>
+        <p>Lihat jadwal konseling yang tersedia dan atur jam dengan guru BK.</p>
+        <a class="btn" href="appointment.php">Lihat Jadwal →</a>
       </article>
-      <article>
-        <h3>Video Edukasi</h3>
-        <p>Video singkat untuk memahami strategi kesejahteraan mental.</p>
+      <article class="card feature">
+        <h4>Sesi Konseling</h4>
+        <p>Ikuti sesi konseling online dengan aman, nyaman, dan rahasia terjaga.</p>
+        <a class="btn" href="appointment.php">Mulai Konseling →</a>
+      </article>
+      <article class="card feature">
+        <h4>Artikel & Tips</h4>
+        <p>Baca berbagai artikel menarik seputar kesehatan mental dan pengembangan diri.</p>
+        <a class="btn" href="articles.php">Baca Artikel →</a>
       </article>
     </section>
   </main>
 
-  <footer>
-    <div class="container">
-      <p>&copy; WMH - Website Mental Healthy</p>
-    </div>
-  </footer>
-
-  <script src="assets/js/app.js"></script>
+  <footer class="landing-footer">© 2026 WMH. Semua hak dilindungi.</footer>
 </body>
 </html>
