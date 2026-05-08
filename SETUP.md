@@ -1,153 +1,123 @@
-# WMH - Website Mental Healthy (Demo)
+# Panduan Instalasi di XAMPP (Windows)
 
-Aplikasi web untuk layanan kesehatan mental yang simple dan user-friendly. Dijalankan di XAMPP (Apache + PHP + MySQL).
+Dokumentasi ini menjelaskan cara instalasi dan menjalankan aplikasi **WMH (Website Mental Healthy)** menggunakan XAMPP.
 
-## 📋 Fitur
+## 1) Prasyarat
 
-- **Home** - Halaman utama dengan informasi tentang layanan
-- **Tes Kesehatan Mental** - Quiz untuk deteksi awal stres, kecemasan, dan depresi (40 pertanyaan)
-- **Buat Janji** - Form untuk membuat janji konsultasi (disimpan ke database)
-- **Artikel** - Artikel tentang kesehatan mental
-- **Video** - Video edukasi kesehatan mental (embed YouTube)
-- **Buku** - Rekomendasi buku tentang kesehatan mental
-- **Admin** - Dashboard admin untuk melihat data janji dan hasil tes
+Pastikan komponen berikut sudah tersedia:
+- XAMPP (Apache + MySQL)
+- PHP 7.4 atau lebih baru (sudah termasuk di XAMPP terbaru)
+- Browser (Chrome/Edge/Firefox)
 
-## 🚀 Cara Menjalankan
+## 2) Menempatkan Proyek ke Folder XAMPP
 
-### 1. Prasyarat
-- XAMPP sudah terinstal dan berjalan
-- MySQL service aktif
-- PHP 7.4 atau lebih tinggi
+1. Buka folder instalasi XAMPP, biasanya:
+   `C:\xampp\htdocs\`
+2. Salin folder proyek ini ke dalam `htdocs`.
+3. Nama folder disarankan: `teman`
 
-### 2. Setup Database
+Contoh hasil akhir:
+`C:\xampp\htdocs\teman\`
 
-Database sudah otomatis terbuat saat migrasi. Jika perlu membuat ulang:
+## 3) Menjalankan Service XAMPP
 
-**Via CLI:**
+1. Buka **XAMPP Control Panel**.
+2. Klik **Start** pada:
+   - **Apache**
+   - **MySQL**
+3. Pastikan keduanya berstatus **Running**.
+
+## 4) Setup Database
+
+Aplikasi menggunakan database bernama `teman`.
+
+### Opsi A (Direkomendasikan): Migrasi Otomatis via CLI
+
+Buka Command Prompt, lalu jalankan:
+
 ```bash
 cd C:\xampp\htdocs\teman
 php migrate.php
 ```
 
-**Via Browser:**
-Buka `http://localhost/teman/migrate.php` di browser.
+### Opsi B: Migrasi via Browser
 
-### 3. Akses Aplikasi
+Buka URL berikut:
 
-Buka browser dan akses:
+`http://localhost/teman/migrate.php`
+
+### Opsi C: Import Manual via phpMyAdmin
+
+1. Buka `http://localhost/phpmyadmin`
+2. Buat database baru: `teman`
+3. Klik tab **Import**
+4. Pilih file `schema.sql`
+5. Klik **Go**
+
+## 5) Konfigurasi Database (Jika Diperlukan)
+
+Jika kredensial MySQL Anda berbeda dari default XAMPP, edit file `config.php`:
+
+```php
+define('DB_HOST', '127.0.0.1');
+define('DB_NAME', 'teman');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 ```
-http://localhost/teman/
-atau
-http://127.0.0.1/teman/
-```
 
-## 🔐 Login Admin
+## 6) Menjalankan Aplikasi
 
-**URL:** `http://localhost/teman/admin.php`
+Setelah Apache dan MySQL aktif, buka:
 
-**Default Credentials:**
-- Username: `admin`
-- Password: `admin123`
+- `http://localhost/teman/`
+- atau `http://127.0.0.1/teman/`
+
+## 7) Login Admin
+
+- URL: `http://localhost/teman/admin.php`
+- Username default: `admin`
+- Password default: `admin123`
+
+> Demi keamanan, ubah password admin setelah instalasi.
 
 ### Mengubah Password Admin
 
-**Via CLI:**
+Via CLI:
+
 ```bash
-php set_admin_password.php newpassword
+php set_admin_password.php password_baru_anda
 ```
 
-**Via Browser:**
-```
-http://localhost/teman/set_admin_password.php?password=newpassword
-```
+Via browser:
 
-## 📁 Struktur Folder
+`http://localhost/teman/set_admin_password.php?password=password_baru_anda`
 
-```
-teman/
-├── index.php              # Halaman utama
-├── test.php               # Tes kesehatan mental
-├── appointment.php        # Form janji konsultasi
-├── articles.php           # Artikel
-├── videos.php             # Video edukasi
-├── books.php              # Rekomendasi buku
-├── admin.php              # Dashboard admin
-├── config.php             # Konfigurasi database
-├── migrate.php            # Script migrasi database
-├── set_admin_password.php # Script untuk ubah password
-├── schema.sql             # Database schema
-├── appointments.json      # File cadangan janji (legacy)
-├── api_save_test.php      # API untuk menyimpan hasil tes
-├── assets/
-│   ├── css/
-│   │   └── style.css      # Stylesheet
-│   └── js/
-│       └── app.js         # JavaScript untuk quiz
-└── data/
-    └── appointments.json  # Data janji (format JSON)
-```
+## 8) Troubleshooting
 
-## 🗄️ Database
+### Apache tidak bisa start
+- Pastikan port 80/443 tidak dipakai aplikasi lain (IIS/Skype/dll)
+- Jika bentrok, ubah port Apache dari XAMPP Config
 
-**Database Name:** `teman`
+### MySQL tidak bisa start
+- Cek apakah port 3306 sedang dipakai
+- Tutup service MySQL lain yang aktif di Windows
 
-**Tables:**
-1. **appointments** - Menyimpan janji konsultasi
-2. **users** - Menyimpan akun admin
-3. **mental_test_results** - Menyimpan hasil tes kesehatan mental
+### Gagal konek database
+- Pastikan MySQL sudah Running
+- Verifikasi pengaturan `DB_HOST`, `DB_USER`, `DB_PASS` di `config.php`
 
-## 🔧 Konfigurasi Database
+### Halaman kosong atau error PHP
+- Cek log di `C:\xampp\php\logs\php_error_log`
+- Pastikan versi PHP kompatibel (minimal 7.4)
 
-Edit file `config.php` jika perlu mengubah kredensial database:
+## 9) Catatan Keamanan
 
-```php
-define('DB_HOST', '127.0.0.1');      // Host MySQL
-define('DB_NAME', 'teman');           // Nama database
-define('DB_USER', 'root');            // Username MySQL
-define('DB_PASS', '');                // Password MySQL
-```
-
-## 📊 Fitur Admin
-
-Di dashboard admin Anda dapat:
-- Melihat daftar semua janji konsultasi
-- Melihat hasil tes kesehatan mental dari pengunjung
-- Menghapus/kosongkan semua janji
-
-## ⚠️ Catatan Keamanan
-
-**PENTING:** Ini adalah demo sederhana untuk tujuan pembelajaran. Sebelum digunakan di production, pastikan:
-
-1. ✅ Ubah password admin default
-2. ✅ Hapus file `set_admin_password.php` setelah konfigurasi
-3. ✅ Gunakan HTTPS (SSL/TLS)
-4. ✅ Tambahkan validasi dan sanitasi input yang lebih ketat
-5. ✅ Implementasikan rate limiting
-6. ✅ Gunakan prepared statements (sudah diterapkan)
-7. ✅ Tambahkan logging dan monitoring
-8. ✅ Backup database secara berkala
-
-## 🐛 Troubleshooting
-
-### Database tidak tersambung
-- Pastikan MySQL service berjalan
-- Periksa konfigurasi di `config.php`
-- Pastikan username dan password MySQL benar
-
-### File CSS/JS tidak muncul
-- Pastikan folder `assets/css` dan `assets/js` sudah ada
-- Periksa permissions folder
-
-### Migration gagal
-- Pastikan MySQL sudah berjalan
-- Pastikan user `root` MySQL memiliki permission CREATE DATABASE
-- Cek error message di output
-
-## 📞 Kontak & Support
-
-Untuk pertanyaan atau masalah, hubungi admin aplikasi.
+Ini masih aplikasi demo. Sebelum dipakai di production:
+- Ganti password default admin
+- Hapus atau batasi akses ke `set_admin_password.php`
+- Aktifkan HTTPS
+- Tambahkan validasi dan proteksi keamanan tambahan
 
 ---
 
-**Last Updated:** 2026-05-08
-**Version:** 1.0 (Fixed & Complete)
+Dokumentasi ini terakhir diperbarui pada **2026-05-08**.
