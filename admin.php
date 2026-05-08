@@ -82,8 +82,8 @@ $videos = $pdo->query('SELECT * FROM videos ORDER BY created_at DESC')->fetchAll
 <div class="admin-layout">
   <aside class="admin-sidebar">
     <div class="admin-sidebar__brand">WMH Admin</div>
-    <nav class="admin-sidebar__nav">
-      <a href="#appointments">🗓️ Janji</a><a href="#results">📊 Hasil Tes</a><a href="#articles">📖 Artikel</a><a href="#books">📚 Buku</a><a href="#videos">🎬 Video</a>
+    <nav class="admin-sidebar__nav" id="admin-sidebar-nav">
+      <a href="#appointments" data-section="appointments">🗓️ Janji</a><a href="#results" data-section="results">📊 Hasil Tes</a><a href="#articles" data-section="articles">📖 Artikel</a><a href="#books" data-section="books">📚 Buku</a><a href="#videos" data-section="videos">🎬 Video</a>
     </nav>
     <a class="admin-sidebar__logout" href="?logout=1">Logout</a>
   </aside>
@@ -96,4 +96,48 @@ function delForm($type, $id) { echo '<form method="post" class="admin-form-delet
 <section id="articles" class="admin-section"><h3>📖 Kelola Artikel</h3><form method="post" class="admin-form admin-form-create is-create"><input type="hidden" name="crud_type" value="articles"><input type="hidden" name="crud_action" value="create"><input name="title" placeholder="Judul" required><input name="url" placeholder="URL"><input name="summary" placeholder="Ringkasan"><button class="btn">Tambah</button></form><?php foreach($articles as $r): ?><form method="post" class="admin-form is-row"><input type="hidden" name="crud_type" value="articles"><input type="hidden" name="crud_action" value="update"><input type="hidden" name="id" value="<?= $r['id'] ?>"><input name="title" value="<?= htmlspecialchars($r['title']) ?>"><input name="url" value="<?= htmlspecialchars($r['url']) ?>"><input name="summary" value="<?= htmlspecialchars($r['summary']) ?>"><button class="btn">Simpan</button><?php delForm('articles',$r['id']); ?></form><?php endforeach; ?></section>
 <section id="books" class="admin-section"><h3>📚 Kelola Buku</h3><form method="post" class="admin-form admin-form-create is-create"><input type="hidden" name="crud_type" value="books"><input type="hidden" name="crud_action" value="create"><input name="title" placeholder="Judul" required><input name="author" placeholder="Penulis"><input name="url" placeholder="URL"><button class="btn">Tambah</button></form><?php foreach($books as $r): ?><form method="post" class="admin-form is-row"><input type="hidden" name="crud_type" value="books"><input type="hidden" name="crud_action" value="update"><input type="hidden" name="id" value="<?= $r['id'] ?>"><input name="title" value="<?= htmlspecialchars($r['title']) ?>"><input name="author" value="<?= htmlspecialchars($r['author']) ?>"><input name="url" value="<?= htmlspecialchars($r['url']) ?>"><button class="btn">Simpan</button><?php delForm('books',$r['id']); ?></form><?php endforeach; ?></section>
 <section id="videos" class="admin-section"><h3>🎬 Kelola Video</h3><form method="post" class="admin-form admin-form-create is-create"><input type="hidden" name="crud_type" value="videos"><input type="hidden" name="crud_action" value="create"><input name="title" placeholder="Judul" required><input name="embed_url" placeholder="Embed URL" required><input name="description" placeholder="Deskripsi"><button class="btn">Tambah</button></form><?php foreach($videos as $r): ?><form method="post" class="admin-form is-row"><input type="hidden" name="crud_type" value="videos"><input type="hidden" name="crud_action" value="update"><input type="hidden" name="id" value="<?= $r['id'] ?>"><input name="title" value="<?= htmlspecialchars($r['title']) ?>"><input name="embed_url" value="<?= htmlspecialchars($r['embed_url']) ?>"><input name="description" value="<?= htmlspecialchars($r['description']) ?>"><button class="btn">Simpan</button><?php delForm('videos',$r['id']); ?></form><?php endforeach; ?></section>
-</main></div></body></html>
+</main></div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var sections = Array.from(document.querySelectorAll('.admin-section'));
+  var navLinks = Array.from(document.querySelectorAll('#admin-sidebar-nav a[data-section]'));
+
+  function showSection(sectionId) {
+    var activeId = sectionId || 'appointments';
+
+    sections.forEach(function (section) {
+      var isActive = section.id === activeId;
+      section.classList.toggle('admin-section--active', isActive);
+      section.classList.toggle('admin-section--hidden', !isActive);
+    });
+
+    navLinks.forEach(function (link) {
+      var isActiveLink = link.dataset.section === activeId;
+      link.classList.toggle('is-active', isActiveLink);
+      if (isActiveLink) {
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  function getSectionFromHash() {
+    var rawHash = window.location.hash.replace('#', '');
+    return navLinks.some(function (link) { return link.dataset.section === rawHash; }) ? rawHash : 'appointments';
+  }
+
+  showSection(getSectionFromHash());
+
+  navLinks.forEach(function (link) {
+    link.addEventListener('click', function () {
+      showSection(link.dataset.section);
+    });
+  });
+
+  window.addEventListener('hashchange', function () {
+    showSection(getSectionFromHash());
+  });
+});
+</script>
+</body></html>
