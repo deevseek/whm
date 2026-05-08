@@ -361,34 +361,14 @@ footer .container p{margin:0;color:#4b5563;text-align:center;padding:10px 0}
 @media(max-width:760px){.site-header h1,.brand-title{font-size:30px}.title-card h1{font-size:30px}.question-box h2{font-size:24px}.video-grid,.feature-row{grid-template-columns:1fr}}
 
 /* Admin dashboard improvements */
-.admin-page{
-  background:linear-gradient(180deg,#f3f7ff 0%,#eaf0fb 100%);
-  min-height:100vh;
-}
-.admin-container{max-width:1180px;padding:28px 20px 48px}
-.admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;gap:16px}
-.admin-header h1{font-size:40px;margin:4px 0 0;color:#0f172a}
-.admin-eyebrow{margin:0;color:#2563eb;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:12px}
-.admin-section{margin:0 0 24px;background:#fff;border:1px solid #dce6f6;border-radius:16px;padding:18px 18px 8px;box-shadow:0 8px 24px rgba(15,23,42,.06)}
-.admin-section h3{margin:0 0 14px;color:#0f172a;font-size:27px}
-.admin-form{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px;align-items:center;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #eef2fb}
-.admin-form:last-child{border-bottom:none;margin-bottom:4px}
-.admin-form input{width:100%;min-height:40px;padding:9px 12px;border:1px solid #c8d4ea;border-radius:10px;font-size:14px;background:#fbfdff}
-.admin-form input:focus{outline:none;border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.15)}
-.admin-form .btn{min-height:40px}
-.admin-form-create input[name="name"],.admin-form input[name="name"],.admin-form input[name="title"],.admin-form input[name="nama"]{grid-column:span 2}
-.admin-form-create input[name="email"],.admin-form input[name="email"],.admin-form input[name="url"],.admin-form input[name="author"],.admin-form input[name="embed_url"]{grid-column:span 3}
-.admin-form input[name="date"],.admin-form input[name="time"],.admin-form input[name="kategori"],.admin-form input[name="total_skor"]{grid-column:span 2}
-.admin-form input[name="notes"],.admin-form input[name="summary"],.admin-form input[name="description"]{grid-column:span 3}
-.admin-form .btn{grid-column:span 1}
-.admin-form-delete{display:inline-block}
-.btn-danger{background:#dc2626}
-.btn-danger:hover{background:#b91c1c}
-.btn-ghost{background:#fff;color:#1e3a8a;border:1px solid #bfdbfe}
-.btn-ghost:hover{background:#eff6ff}
-@media (max-width:980px){
-  .admin-header{flex-direction:column;align-items:flex-start}
-  .admin-form{grid-template-columns:1fr 1fr}
-  .admin-form input,.admin-form .btn{grid-column:span 2 !important}
-  .admin-form-delete{display:block}
-}
+.admin-page{background:#eef3fb}
+.admin-panel{max-width:1180px;padding-top:26px;padding-bottom:40px}
+.admin-panel h2{margin-bottom:6px}
+.admin-logout-link{display:inline-block;margin-bottom:10px;color:#1d4ed8;font-weight:600}
+.admin-panel section{background:#fff;border:1px solid #dbe5f5;border-radius:14px;padding:14px 14px 8px;margin:0 0 18px;box-shadow:0 4px 14px rgba(15,23,42,.05)}
+.admin-panel section h3{margin:0 0 10px;font-size:30px;color:#0f172a}
+.admin-panel section form{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 8px;padding:0;background:transparent;border:0;box-shadow:none}
+.admin-panel section form input{flex:1 1 170px;min-width:150px;margin-top:0;border:1px solid #cfd9ea;border-radius:9px;padding:10px;background:#fff}
+.admin-panel section form button.btn{height:40px;padding:0 16px;white-space:nowrap}
+.admin-panel section form[style*="display:inline"]{display:inline-flex;padding:0;margin:0 0 0 4px}
+@media (max-width:768px){.admin-panel section h3{font-size:24px}.admin-panel section form input,.admin-panel section form button.btn{flex:1 1 100%}}

@@ -75,7 +75,7 @@ $articles = $pdo->query('SELECT * FROM articles ORDER BY created_at DESC')->fetc
 $books = $pdo->query('SELECT * FROM books ORDER BY created_at DESC')->fetchAll();
 $videos = $pdo->query('SELECT * FROM videos ORDER BY created_at DESC')->fetchAll();
 ?>
-<!doctype html><html lang="id"><head><meta charset="utf-8"><title>Admin CRUD WMH</title><link rel="stylesheet" href="assets/css/style.css"></head><body class="admin-page"><main class="container admin-container"><header class="admin-header"><div><p class="admin-eyebrow">Panel Admin</p><h1>Dashboard CRUD</h1></div><a class="btn btn-ghost" href="?logout=1">Logout</a></header>
+<!doctype html><html lang="id"><head><meta charset="utf-8"><title>Admin CRUD WMH</title><link rel="stylesheet" href="assets/css/style.css"></head><body class="admin-page"><main class="container admin-panel"><h2>Dashboard CRUD</h2><p><a class="admin-logout-link" href="?logout=1">Logout</a></p>
 <?php
 function delForm($type, $id) { echo '<form method="post" class="admin-form-delete"><input type="hidden" name="crud_type" value="'.$type.'"><input type="hidden" name="crud_action" value="delete"><input type="hidden" name="id" value="'.$id.'"><button class="btn btn-danger">Hapus</button></form>'; }
 ?>
