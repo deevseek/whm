@@ -1,92 +1,51 @@
-/* WMH styles with light blue, light green, and cream palette
-	 Background image (slightly blurred) is expected at /kesmen/background.jpg
-	 If your image has a different filename, update `body::before` URL accordingly. */
-
-:root{
-	--blue-light:#7ecaf6; /* biru muda */
-	--green-light:#91f8ac; /* hijau muda */
-	--cream:#46cabf; /* krem */
-	--accent:#2b7cff; /* primary accent (darker blue) */
-	--muted:#6b7280;
-	--card-bg: rgba(255,255,255,0.85);
-}
-
 *{box-sizing:border-box}
-body{
-	font-family:Segoe UI, Roboto, Arial, sans-serif;
-	margin:0;
-	color:#3b5b74;
-	background:var(--cream);
-	position:relative;
-	min-height:100vh;
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:#edf2fb;color:#111827}
+a{text-decoration:none;color:inherit}
+
+/* Landing page mirroring provided screenshot */
+.landing-body{padding:0 0 24px;background:#edf2fb}
+.topbar{height:74px;background:linear-gradient(90deg,#3274df,#0b63df);display:flex;align-items:center;justify-content:space-between;padding:0 26px;color:#fff}
+.brand{display:flex;gap:10px;align-items:center}.logo{font-size:30px}.brand-title{font-size:42px;font-weight:700;line-height:.8}.brand-sub{font-size:13px;opacity:.95}
+.main-nav{display:flex;gap:8px;align-items:center}.main-nav a{padding:12px 14px;border-radius:10px;font-weight:600;font-size:14px}.main-nav a.active{background:#fff;color:#0c63dd}
+.user-pill{background:rgba(255,255,255,.14);padding:10px 14px;border-radius:20px;font-weight:600}
+
+.landing-wrap{max-width:1420px;margin:18px auto 0;padding:0 18px}
+.title-card{display:flex;align-items:center;gap:16px;background:#f6f8fe;border:1px solid #e4eaf7;border-radius:14px;padding:18px 20px}
+.title-icon{width:56px;height:56px;border-radius:12px;background:#dce8ff;display:grid;place-items:center;font-size:28px}
+.title-card h1{margin:0 0 6px;font-size:46px}.title-card p{margin:0;color:#4b5563}
+
+.grid-main{display:grid;grid-template-columns:2.1fr 1fr 1.05fr;gap:16px;margin-top:14px}
+.card{background:#fff;border:1px solid #e6ebf5;border-radius:14px;padding:18px;box-shadow:0 2px 8px rgba(19,45,99,.04)}
+.row{display:flex;align-items:center}.space-between{justify-content:space-between}
+.progress{margin-top:10px;height:8px;background:#e9eff9;border-radius:999px;overflow:hidden}.progress span{display:block;height:100%;background:#1d6df2;border-radius:999px}
+.question-box{margin-top:16px;background:#f3f7ff;border:1px solid #e7eefc;padding:16px;border-radius:12px;display:flex;gap:12px;align-items:flex-start}
+.q-number{width:40px;height:40px;border-radius:50%;background:#1d6df2;color:#fff;display:grid;place-items:center;font-weight:700}.question-box h2{margin:0;font-size:30px;line-height:1.35}
+.options{list-style:none;padding:0;margin:12px 0;display:grid;gap:9px}.options li{border:1px solid #e6ebf5;background:#fff;padding:12px 14px;border-radius:10px;color:#374151}.options li.selected{color:#0e60dd;font-weight:700}
+.actions{display:flex;justify-content:space-between;margin-top:10px}
+.btn{border:none;background:#1668eb;color:#fff;border-radius:10px;padding:11px 20px;font-weight:700;cursor:pointer;display:inline-block}.btn.ghost{background:#fff;color:#111827;border:1px solid #d7e0f1}
+
+.hint-card h3,.info-box h3,.progress-card h3{margin:0 0 10px}.hint-card{background:#fff8eb}.hint-card ul{margin:0;padding-left:18px;display:grid;gap:8px;color:#374151}
+.side-col{display:grid;gap:14px}.small{padding-bottom:14px}
+.info-box p,.note-card p,.progress-card p{margin:0;color:#374151;line-height:1.5}
+.note-card{grid-column:1/3;background:#f1f6ff}.progress-card{grid-column:2/3}
+.circle{width:120px;height:120px;border-radius:50%;border:12px solid #e6edf9;border-top-color:#1f6ef0;display:grid;place-items:center;font-size:30px;font-weight:800;margin:8px 0 12px}
+
+.feature-row{margin-top:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.feature h4{margin:0 0 8px;font-size:24px}.feature p{margin:0 0 14px;color:#4b5563;min-height:56px}
+.landing-footer{text-align:center;color:#4b5563;padding-top:16px}
+
+/* compatibility with existing internal pages */
+.container{max-width:1000px;margin:0 auto;padding:1rem}
+.site-header{background:#fff;border-bottom:1px solid #eee}
+.hero,.features,.notice,.video-grid,.appointments,.result{all:unset}
+
+@media (max-width:1180px){
+  .main-nav{display:none}
+  .grid-main{grid-template-columns:1fr}
+  .note-card,.progress-card{grid-column:auto}
+  .feature-row{grid-template-columns:1fr 1fr}
 }
-
-/* Background image layer (blurred) */
-body::before{
-	content:'';
-	position:fixed;
-	inset:0;
-	background-image: url('/kesmen/background.jpg');
-	background-size:cover;
-	background-position:center;
-	filter: blur(6px) brightness(0.75);
-	z-index:-2;
-	transform:scale(1.02);
+@media (max-width:760px){
+  .title-card h1{font-size:30px}
+  .question-box h2{font-size:22px}
+  .feature-row{grid-template-columns:1fr}
 }
-
-/* Warm overlay to slightly tint the background */
-body::after{
-	content:'';
-	position:fixed;
-	inset:0;
-	background: linear-gradient(180deg, rgba(251, 228, 184, 0.25), rgba(200,246,212,0.08));
-	z-index:-1;
-}
-
-.container{max-width:960px;margin:0 auto;padding:1rem}
-.site-header{background:var(--card-bg);border-bottom:1px solid rgba(50, 43, 43, 0.06);backdrop-filter: blur(4px)}
-.site-header .container{display:flex;align-items:center;justify-content:space-between}
-.site-header h1{margin:0;font-size:1.25rem;color:var(--accent)}
-.site-header nav a{margin-left:0.75rem;color:var(--muted);text-decoration:none}
-
-.hero{padding:2rem 0;text-align:center}
-.hero h2{margin:0 0 .5rem;color:var(--accent)}
-.hero .hero-content{max-width:880px;margin:0.75rem auto;padding:1.25rem;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.82));box-shadow:0 6px 18px rgba(16,24,40,0.08);text-align:left}
-.hero .hero-content h3{margin:0;color:var(--blue-light);font-size:1.25rem}
-.hero .hero-content h4{margin:.25rem 0 .75rem;color:var(--green-light);font-size:1rem}
-.hero .hero-content p{line-height:1.6;color:#21313a;margin:.5rem 0}
-.cta{margin-top:1rem}
-.cta .btn{margin:0.5rem}
-
-.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1.5rem}
-.features article{background:var(--card-bg);padding:1rem;border-radius:8px}
-
-.btn{background:var(--accent);color:#fff;padding:0.5rem 1rem;border:none;border-radius:8px;text-decoration:none;cursor:pointer}
-.btn.secondary{background:transparent;color:var(--accent);border:1px solid var(--accent)}
-.btn.danger{background:#e74c3c}
-
-.notice{padding:0.75rem;border-radius:6px;margin-bottom:1rem}
-.notice.success{background:rgba(40,167,69,0.12);color:#14532d}
-.notice.error{background:rgba(233,30,30,0.08);color:#7f1d1d}
-
-form label{display:block;margin:0.5rem 0}
-input[type=text],input[type=email],input[type=date],input[type=time],textarea{width:100%;padding:0.5rem;border:1px solid rgba(0,0,0,0.08);border-radius:6px;background:rgba(255,255,255,0.9)}
-.read-more{display:inline-block;margin-top:.5rem;color:var(--accent)}
-.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.appointments{width:100%;border-collapse:collapse}
-.appointments th,.appointments td{padding:0.5rem;border:1px solid rgba(0,0,0,0.06);text-align:left}
-.footer{padding:1rem}
-.result{background:var(--card-bg);padding:1rem;border-radius:6px;margin-top:1rem}
-
-@media(max-width:900px){.video-grid{grid-template-columns:1fr}.site-header .container{flex-direction:column;gap:.5rem}}
-
-@media(max-width:600px){
-	.hero .hero-content{padding:1rem;border-radius:8px}
-}
-
-/* Utility: cream card background for other sections */
-.card-cream{background:linear-gradient(180deg,var(--cream), #fff);padding:1rem;border-radius:8px}
-
-/* small tweaks for contrast */
-.features article h3{color:var(--accent)}
-.book-list li{margin:0.5rem 0}
