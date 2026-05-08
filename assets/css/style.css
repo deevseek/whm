@@ -368,10 +368,14 @@ footer .container p{margin:0;color:#4b5563;text-align:center;padding:10px 0}
 .admin-sidebar__nav{display:grid;gap:8px}
 .admin-sidebar__nav a{color:#cbd5e1;padding:11px 12px;border-radius:10px;font-weight:600}
 .admin-sidebar__nav a:hover{background:#1e293b;color:#fff}
+.admin-sidebar__nav a.is-active{background:#1d4ed8;color:#fff}
 .admin-sidebar__logout{margin-top:auto;background:#1d4ed8;color:#fff;padding:10px 12px;border-radius:10px;text-align:center;font-weight:700}
 .admin-panel{max-width:100%;padding:28px 28px 48px}
 .admin-panel h2{margin-bottom:16px;font-size:40px;color:#0f172a;letter-spacing:-.02em}
 .admin-panel section{background:#fff;border:1px solid #d6e2f3;border-radius:14px;padding:16px;margin:0 0 16px;box-shadow:0 6px 18px rgba(15,23,42,.06)}
+
+.admin-section--hidden{display:none}
+.admin-section--active{display:block}
 .admin-panel section h3{margin:0 0 12px;font-size:34px;color:#0f172a}
 .admin-panel section form{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px;align-items:center;margin:0 0 10px;padding:0;background:transparent;border:0;box-shadow:none}
 .admin-panel section form input{grid-column:span 2;min-width:0;margin-top:0;border:1px solid #c6d5ec;border-radius:10px;padding:10px 12px;background:#fff;font-size:15px}
