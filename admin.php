@@ -460,10 +460,60 @@ if ($pdo) {
       background: rgba(255, 255, 255, 0.3);
     }
 
-    .admin-container {
+    .admin-layout {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 40px;
+      padding: 30px 40px 40px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .admin-sidebar {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      padding: 22px;
+      position: sticky;
+      top: 24px;
+    }
+
+    .sidebar-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #667eea;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .sidebar-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sidebar-link {
+      text-decoration: none;
+      color: #374151;
+      font-weight: 600;
+      background: #f8f9fa;
+      border: 1px solid #e6ebf6;
+      border-radius: 10px;
+      padding: 10px 12px;
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-link:hover {
+      border-color: #667eea;
+      color: #667eea;
+      transform: translateX(3px);
+      background: #f4f6ff;
+    }
+
+    .admin-container {
+      min-width: 0;
     }
 
     .admin-section {
@@ -656,8 +706,13 @@ if ($pdo) {
         width: 100%;
       }
 
-      .admin-container {
+      .admin-layout {
         padding: 20px;
+        grid-template-columns: 1fr;
+      }
+
+      .admin-sidebar {
+        position: static;
       }
 
       .admin-section {
@@ -700,7 +755,23 @@ if ($pdo) {
   </div>
 </header>
 
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <h2 class="sidebar-title">Menu Admin</h2>
+    <nav class="sidebar-menu">
+      <a class="sidebar-link" href="#ringkasan">📌 Ringkasan Dashboard</a>
+      <a class="sidebar-link" href="#janji-konsultasi">📅 Daftar Janji Konsultasi</a>
+      <a class="sidebar-link" href="#hasil-tes">📊 Hasil Tes Mental</a>
+      <a class="sidebar-link" href="articles.php">📖 Kelola Artikel</a>
+      <a class="sidebar-link" href="books.php">📚 Kelola Buku</a>
+      <a class="sidebar-link" href="videos.php">🎬 Kelola Video</a>
+      <a class="sidebar-link" href="appointment.php">🗓️ Form Janji (User)</a>
+      <a class="sidebar-link" href="test.php">📝 Halaman Tes (User)</a>
+    </nav>
+  </aside>
+
 <main class="admin-container">
+  <section id="ringkasan" class="admin-section">
   <div class="stats-grid">
     <div class="stat-card">
       <div class="stat-number"><?= count($appointments) ?></div>
@@ -711,9 +782,10 @@ if ($pdo) {
       <div class="stat-label">📊 Hasil Tes</div>
     </div>
   </div>
+  </section>
 
   <!-- ================= JANJI ================= -->
-  <section class="admin-section">
+  <section id="janji-konsultasi" class="admin-section">
     <h2 class="section-title">📅 Daftar Janji Konsultasi</h2>
 
     <div class="action-buttons">
@@ -763,7 +835,7 @@ if ($pdo) {
   <div class="divider"></div>
 
   <!-- ================= HASIL TES ================= -->
-  <section class="admin-section">
+  <section id="hasil-tes" class="admin-section">
     <h2 class="section-title">📊 Hasil Tes Kesehatan Mental</h2>
 
     <?php if (empty($test_results)): ?>
@@ -806,6 +878,7 @@ if ($pdo) {
     <?php endif; ?>
   </section>
 </main>
+</div>
 
 <footer style="text-align: center; padding: 30px 40px; background: #f5f7fa; color: #999; margin-top: 40px; border-top: 1px solid #e6ebf6;">
   <p>&copy; 2026 WMH - Website Mental Health. Semua hak dilindungi.</p>
