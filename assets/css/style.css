@@ -359,3 +359,16 @@ footer .container p{margin:0;color:#4b5563;text-align:center;padding:10px 0}
 
 @media(max-width:1200px){.main-nav,.site-header nav{flex-wrap:wrap}.grid-main{grid-template-columns:1fr}.note-card,.progress-card{grid-column:auto}.feature-row{grid-template-columns:repeat(2,1fr)}.footer-box{grid-template-columns:1fr}}
 @media(max-width:760px){.site-header h1,.brand-title{font-size:30px}.title-card h1{font-size:30px}.question-box h2{font-size:24px}.video-grid,.feature-row{grid-template-columns:1fr}}
+
+/* Admin dashboard improvements */
+.admin-page{background:#eef3fb}
+.admin-panel{max-width:1180px;padding-top:26px;padding-bottom:40px}
+.admin-panel h2{margin-bottom:6px}
+.admin-logout-link{display:inline-block;margin-bottom:10px;color:#1d4ed8;font-weight:600}
+.admin-panel section{background:#fff;border:1px solid #dbe5f5;border-radius:14px;padding:14px 14px 8px;margin:0 0 18px;box-shadow:0 4px 14px rgba(15,23,42,.05)}
+.admin-panel section h3{margin:0 0 10px;font-size:30px;color:#0f172a}
+.admin-panel section form{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 8px;padding:0;background:transparent;border:0;box-shadow:none}
+.admin-panel section form input{flex:1 1 170px;min-width:150px;margin-top:0;border:1px solid #cfd9ea;border-radius:9px;padding:10px;background:#fff}
+.admin-panel section form button.btn{height:40px;padding:0 16px;white-space:nowrap}
+.admin-panel section form[style*="display:inline"]{display:inline-flex;padding:0;margin:0 0 0 4px}
+@media (max-width:768px){.admin-panel section h3{font-size:24px}.admin-panel section form input,.admin-panel section form button.btn{flex:1 1 100%}}
