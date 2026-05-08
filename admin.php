@@ -75,7 +75,19 @@ $articles = $pdo->query('SELECT * FROM articles ORDER BY created_at DESC')->fetc
 $books = $pdo->query('SELECT * FROM books ORDER BY created_at DESC')->fetchAll();
 $videos = $pdo->query('SELECT * FROM videos ORDER BY created_at DESC')->fetchAll();
 ?>
-<!doctype html><html lang="id"><head><meta charset="utf-8"><title>Admin CRUD WMH</title><link rel="stylesheet" href="assets/css/style.css"></head><body class="admin-page"><main class="container admin-panel"><h2>Dashboard CRUD</h2><p><a class="admin-logout-link" href="?logout=1">Logout</a></p>
+<!doctype html>
+<html lang="id">
+<head><meta charset="utf-8"><title>Admin CRUD WMH</title><link rel="stylesheet" href="assets/css/style.css"></head>
+<body class="admin-page">
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar__brand">WMH Admin</div>
+    <nav class="admin-sidebar__nav">
+      <a href="#appointments">🗓️ Janji</a><a href="#results">📊 Hasil Tes</a><a href="#articles">📖 Artikel</a><a href="#books">📚 Buku</a><a href="#videos">🎬 Video</a>
+    </nav>
+    <a class="admin-sidebar__logout" href="?logout=1">Logout</a>
+  </aside>
+  <main class="container admin-panel"><h2>Dashboard Admin</h2>
 <?php
 function delForm($type, $id) { echo '<form method="post" class="admin-form-delete"><input type="hidden" name="crud_type" value="'.$type.'"><input type="hidden" name="crud_action" value="delete"><input type="hidden" name="id" value="'.$id.'"><button class="btn btn-danger">Hapus</button></form>'; }
 ?>
@@ -84,4 +96,4 @@ function delForm($type, $id) { echo '<form method="post" class="admin-form-delet
 <section id="articles" class="admin-section"><h3>📖 Kelola Artikel</h3><form method="post" class="admin-form admin-form-create is-create"><input type="hidden" name="crud_type" value="articles"><input type="hidden" name="crud_action" value="create"><input name="title" placeholder="Judul" required><input name="url" placeholder="URL"><input name="summary" placeholder="Ringkasan"><button class="btn">Tambah</button></form><?php foreach($articles as $r): ?><form method="post" class="admin-form is-row"><input type="hidden" name="crud_type" value="articles"><input type="hidden" name="crud_action" value="update"><input type="hidden" name="id" value="<?= $r['id'] ?>"><input name="title" value="<?= htmlspecialchars($r['title']) ?>"><input name="url" value="<?= htmlspecialchars($r['url']) ?>"><input name="summary" value="<?= htmlspecialchars($r['summary']) ?>"><button class="btn">Simpan</button><?php delForm('articles',$r['id']); ?></form><?php endforeach; ?></section>
 <section id="books" class="admin-section"><h3>📚 Kelola Buku</h3><form method="post" class="admin-form admin-form-create is-create"><input type="hidden" name="crud_type" value="books"><input type="hidden" name="crud_action" value="create"><input name="title" placeholder="Judul" required><input name="author" placeholder="Penulis"><input name="url" placeholder="URL"><button class="btn">Tambah</button></form><?php foreach($books as $r): ?><form method="post" class="admin-form is-row"><input type="hidden" name="crud_type" value="books"><input type="hidden" name="crud_action" value="update"><input type="hidden" name="id" value="<?= $r['id'] ?>"><input name="title" value="<?= htmlspecialchars($r['title']) ?>"><input name="author" value="<?= htmlspecialchars($r['author']) ?>"><input name="url" value="<?= htmlspecialchars($r['url']) ?>"><button class="btn">Simpan</button><?php delForm('books',$r['id']); ?></form><?php endforeach; ?></section>
 <section id="videos" class="admin-section"><h3>🎬 Kelola Video</h3><form method="post" class="admin-form admin-form-create is-create"><input type="hidden" name="crud_type" value="videos"><input type="hidden" name="crud_action" value="create"><input name="title" placeholder="Judul" required><input name="embed_url" placeholder="Embed URL" required><input name="description" placeholder="Deskripsi"><button class="btn">Tambah</button></form><?php foreach($videos as $r): ?><form method="post" class="admin-form is-row"><input type="hidden" name="crud_type" value="videos"><input type="hidden" name="crud_action" value="update"><input type="hidden" name="id" value="<?= $r['id'] ?>"><input name="title" value="<?= htmlspecialchars($r['title']) ?>"><input name="embed_url" value="<?= htmlspecialchars($r['embed_url']) ?>"><input name="description" value="<?= htmlspecialchars($r['description']) ?>"><button class="btn">Simpan</button><?php delForm('videos',$r['id']); ?></form><?php endforeach; ?></section>
-</main></body></html>
+</main></div></body></html>
