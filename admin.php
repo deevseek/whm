@@ -25,7 +25,43 @@ if (isset($_GET['logout'])) {
 }
 
 if (empty($_SESSION['admin_logged'])): ?>
-<!doctype html><html lang="id"><head><meta charset="utf-8"><title>Login Admin</title><link rel="stylesheet" href="assets/css/style.css"></head><body><main class="container"><h2>Login Admin</h2><?php if (!empty($error)): ?><div class="notice"><?= htmlspecialchars($error) ?></div><?php endif; ?><form method="post"><label>Username<input name="username" required></label><label>Password<input type="password" name="password" required></label><button class="btn" name="login">Login</button></form></main></body></html>
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login Admin</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="admin-login-page">
+  <div class="admin-login-bubble admin-login-bubble--top"></div>
+  <div class="admin-login-bubble admin-login-bubble--bottom"></div>
+
+  <main class="admin-login">
+    <section class="admin-login__card">
+      <div class="admin-login__logo" aria-hidden="true">🧠</div>
+      <h1>WMH</h1>
+      <p>Website Mental Health - Admin Login</p>
+
+      <?php if (!empty($error)): ?>
+      <div class="notice admin-login__notice"><?= htmlspecialchars($error) ?></div>
+      <?php endif; ?>
+
+      <form method="post" class="admin-login__form">
+        <label for="admin-username">👤 Username</label>
+        <input id="admin-username" name="username" placeholder="Masukkan username" required>
+
+        <label for="admin-password">🔒 Password</label>
+        <input id="admin-password" type="password" name="password" placeholder="Masukkan password" required>
+
+        <button class="btn admin-login__btn" name="login" type="submit">🔐 Masuk ke Dashboard</button>
+      </form>
+
+      <div class="admin-login__default">Default: username <strong>admin</strong> | password <strong>admin123</strong></div>
+    </section>
+  </main>
+</body>
+</html>
 <?php exit; endif;
 
 $pdo = getPDO(true);
