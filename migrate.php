@@ -76,3 +76,32 @@ if (file_exists($jsonFile)) {
 }
 
 echo "Migration complete.\n";
+
+// Seed konten awal
+$seedData = [
+    'articles' => [
+        ['Pentingnya Tidur untuk Kesehatan Mental', 'Tidur berkualitas membantu regulasi emosi dan kemampuan berpikir.', 'https://www.halodoc.com/artikel/tidur-bisa-memengaruhi-kesehatan-mental-ini-alasannya'],
+        ['Cara Mengelola Kecemasan Sehari-hari', 'Strategi sederhana seperti pernapasan, rutinitas, dan menjaga koneksi sosial.', 'https://www.mayoclinichealthsystem.org/hometown-health/speaking-of-health/9-ways-to-tame-anxiety-during-the-covid-19-pandemic']
+    ],
+    'books' => [
+        ['Feeling Good', 'David D. Burns', 'https://www.google.com/search?q=Feeling+Good+-+David+D.+Burns'],
+        ['The Body Keeps the Score', 'Bessel van der Kolk', 'https://www.google.com/search?q=The+Body+Keeps+the+Score+-+Bessel+van+der+Kolk']
+    ],
+    'videos' => [
+        ['We All Have Mental Health', 'Video edukasi tentang kesehatan mental.', 'https://www.youtube.com/embed/DxIDKZHW3-E'],
+        ['Teknik Pernapasan (Box Breathing)', 'Teknik sederhana untuk menenangkan pikiran.', 'https://www.youtube.com/embed/6t0V9X6kWmA'],
+        ['Apa Itu Kesehatan Mental?', 'Penjelasan singkat kesehatan mental.', 'https://www.youtube.com/embed/MEJVEkVgacg']
+    ]
+];
+foreach ($seedData as $table => $rows) {
+    $count = (int)$db->query('SELECT COUNT(*) c FROM ' . $table)->fetch()['c'];
+    if ($count === 0) {
+        if ($table === 'articles') $ins = $db->prepare('INSERT INTO articles (title,summary,url,created_at) VALUES (?,?,?,?)');
+        if ($table === 'books') $ins = $db->prepare('INSERT INTO books (title,author,url,created_at) VALUES (?,?,?,?)');
+        if ($table === 'videos') $ins = $db->prepare('INSERT INTO videos (title,description,embed_url,created_at) VALUES (?,?,?,?)');
+        foreach ($rows as $row) { $ins->execute([$row[0],$row[1],$row[2],date('Y-m-d H:i:s')]); }
+        echo "Seeded $table.
+";
+    }
+}
+

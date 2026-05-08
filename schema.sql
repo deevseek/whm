@@ -1,5 +1,4 @@
 -- Schema for WMH (Website Mental Healthy)
--- Run this file or use migrate.php to create the database and tables.
 
 CREATE DATABASE IF NOT EXISTS `teman` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `teman`;
@@ -28,6 +27,33 @@ CREATE TABLE IF NOT EXISTS `mental_test_results` (
   `nama` VARCHAR(255),
   `total_skor` INT DEFAULT 0,
   `kategori` VARCHAR(50),
+  `created_at` DATETIME NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `articles` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NOT NULL,
+  `summary` TEXT,
+  `url` VARCHAR(500) DEFAULT NULL,
+  `created_at` DATETIME NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `books` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NOT NULL,
+  `author` VARCHAR(255) DEFAULT NULL,
+  `url` VARCHAR(500) DEFAULT NULL,
+  `created_at` DATETIME NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `videos` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NOT NULL,
+  `description` TEXT,
+  `embed_url` VARCHAR(500) NOT NULL,
   `created_at` DATETIME NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
