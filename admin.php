@@ -2,6 +2,38 @@
 require_once __DIR__ . '/config.php';
 session_start();
 
+function normalizeYoutubeEmbedUrl(string $url): string {
+    $url = trim($url);
+    if ($url === '') return '';
+
+    $parts = parse_url($url);
+    if (!$parts || empty($parts['host'])) return $url;
+
+    $host = strtolower($parts['host']);
+    $path = $parts['path'] ?? '';
+    parse_str($parts['query'] ?? '', $query);
+
+    $videoId = '';
+    if (in_array($host, ['youtu.be'], true)) {
+        $videoId = trim($path, '/');
+    } elseif (in_array($host, ['youtube.com', 'www.youtube.com', 'm.youtube.com'], true)) {
+        if (strpos($path, '/embed/') === 0) {
+            return $url;
+        }
+        if ($path === '/watch' && !empty($query['v'])) {
+            $videoId = $query['v'];
+        } elseif (strpos($path, '/shorts/') === 0 || strpos($path, '/live/') === 0) {
+            $videoId = basename($path);
+        }
+    }
+
+    if ($videoId !== '') {
+        return 'https://www.youtube.com/embed/' . rawurlencode($videoId);
+    }
+
+    return $url;
+}
+
 if (isset($_POST['login'])) {
     $pdo = getPDO(true);
     if ($pdo) {
@@ -97,8 +129,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['crud_type'], $_POST['
         if ($action === 'delete') $pdo->prepare('DELETE FROM books WHERE id=?')->execute([(int)$_POST['id']]);
     }
     if ($type === 'videos') {
-        if ($action === 'create') $pdo->prepare('INSERT INTO videos (title,description,embed_url,created_at) VALUES (?,?,?,?)')->execute([$_POST['title'], $_POST['description'], $_POST['embed_url'], date('Y-m-d H:i:s')]);
-        if ($action === 'update') $pdo->prepare('UPDATE videos SET title=?, description=?, embed_url=? WHERE id=?')->execute([$_POST['title'], $_POST['description'], $_POST['embed_url'], (int)$_POST['id']]);
+        $embedUrl = normalizeYoutubeEmbedUrl($_POST['embed_url'] ?? '');
+        if ($action === 'create') $pdo->prepare('INSERT INTO videos (title,description,embed_url,created_at) VALUES (?,?,?,?)')->execute([$_POST['title'], $_POST['description'], $embedUrl, date('Y-m-d H:i:s')]);
+        if ($action === 'update') $pdo->prepare('UPDATE videos SET title=?, description=?, embed_url=? WHERE id=?')->execute([$_POST['title'], $_POST['description'], $embedUrl, (int)$_POST['id']]);
         if ($action === 'delete') $pdo->prepare('DELETE FROM videos WHERE id=?')->execute([(int)$_POST['id']]);
     }
     header('Location: admin.php#' . $type);
